@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuromuscular AI Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    <div class="background-grid"></div>
+
+    <div class="dashboard-container">
+        <!-- GLOBAL HEADER -->
+        <header class="cmd-header">
+            <div class="branding">
+                <div class="spinning-core"></div>
+                <h1>A.I. NEUROMUSCULAR COMMAND CENTER <span class="version">v4.0.0 (WORLD-CLASS TIER)</span></h1>
+            </div>
+            <div class="system-metrics">
+                <span>LATENCY: <span id="sys-lat" class="mono">12ms</span></span>
+                <span>DSP CORE: <span id="sys-dsp" class="mono active">ONLINE</span></span>
+                <button id="toggle-sim" class="btn-override">ENGAGE SIMULATION</button>
+            </div>
+        </header>
+
+        <!-- 3-COLUMN ULTRA LAYOUT -->
+        <main class="grid-layout">
+            
+            <!-- COLUMN 1: AI INFERENCE & EXPORT -->
+            <section class="col-1">
+                <div class="glass-module primary-diag">
+                    <h2 class="mod-title">REAL-TIME CLINICAL STATE</h2>
+                    <div class="diag-display">
+                        <div class="radar-scan"></div>
+                        <h3 id="clinical-state" class="state-text">OPTIMAL</h3>
+                        <div class="gauge-container">
+                            <svg viewBox="0 0 100 50" class="gauge">
+                                <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50"></path>
+                                <path class="gauge-fill" id="fatigue-gauge" d="M 10 50 A 40 40 0 0 1 90 50"></path>
+                            </svg>
+                            <div class="gauge-value mono"><span id="prob-val">0.0</span>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-module">
+                    <h2 class="mod-title">BIOMECHANICAL METRICS</h2>
+                    <div class="metric-grid">
+                        <div class="metric"><span class="m-title">RMS (mV)</span><span id="val-rms" class="m-val mono">0.00</span></div>
+                        <div class="metric"><span class="m-title">MDF (Hz)</span><span id="val-mdf" class="m-val mono">0.00</span></div>
+                        <div class="metric"><span class="m-title">MNF (Hz)</span><span id="val-snr" class="m-val mono">0.00</span></div>
+                        <div class="metric"><span class="m-title">ZCR (/s)</span><span id="val-zcr" class="m-val mono">0</span></div>
+                        <div class="metric full-w"><span class="m-title">DIMITROV INDEX (FI)</span><span id="val-dimitrov" class="m-val mono">0.00E+0</span></div>
+                    </div>
+                    <button id="export-btn" class="btn-export">EXTRACT CSV TELEMETRY</button>
+                </div>
+                
+                <div class="glass-module radar-module">
+                    <h2 class="mod-title">MULTIVARIATE FATIGUE PROFILE</h2>
+                    <div class="radar-wrapper">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMN 2: PRIMARY WAVEFORMS (TIME & SPECTROGRAM) -->
+            <section class="col-2">
+                <div class="glass-module full-h">
+                    <div class="mod-header">
+                        <h2 class="mod-title">RAW EMG ACQUISITION (TIME DOMAIN)</h2>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="chart-wrapper time-wrapper">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-module full-h">
+                    <div class="mod-header">
+                        <h2 class="mod-title">ADVANCED SPECTROGRAM (WATERFALL HEATMAP)</h2>
+                    </div>
+                    <div class="spectrogram-wrapper">
+                        <!-- Custom Canvas for true heatmap rendering -->
+                        <canvas id="spectrogramCanvas"></canvas>
+                        <div class="spectrogram-labels">
+                            <span>100Hz</span>
+                            <span>50Hz</span>
+                            <span>0Hz</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMN 3: SPECTRAL ANALYSIS -->
+            <section class="col-3">
+                <div class="glass-module">
+                    <h2 class="mod-title">J.A.S.A. FATIGUE MAPPING</h2>
+                    <div class="chart-wrapper jasa-wrapper">
+                        <canvas id="jasaChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-module">
+                    <h2 class="mod-title">POWER SPECTRAL DENSITY (DFT)</h2>
+                    <div class="chart-wrapper psd-wrapper">
+                        <canvas id="freqChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
